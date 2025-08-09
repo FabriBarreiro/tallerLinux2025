@@ -54,7 +54,9 @@ ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started 
 
 Estos comandos se pueden ejecutar en una sola linea si agregamos "&&\" de la siguente manera:
 
-`ansible centos -i inventory.ini -b -m package -a 'name=chrony state=present' && \
-ansible centos -i inventory.ini -b -m service -a 'name=chronyd state=started enabled=yes'`
+```bash
+ansible centos -i inventory.ini -b -m package -a 'name=chrony state=present' && \
+ansible centos -i inventory.ini -b -m service -a 'name=chronyd state=started enabled=yes'
+```
 
 ---
