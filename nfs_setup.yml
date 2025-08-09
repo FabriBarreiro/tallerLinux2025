@@ -16,18 +16,11 @@
         name:
           - nfs-utils
           - firewalld
-          - rpcbind
         state: present
 
     - name: firewalld iniciado y habilitado
       ansible.builtin.service:
         name: firewalld
-        state: started
-        enabled: true
-
-    - name: rpcbind iniciado y habilitado
-      ansible.builtin.service:
-        name: rpcbind
         state: started
         enabled: true
 
@@ -48,20 +41,6 @@
     - name: Permitir 2049/udp en firewalld (NFS)
       ansible.posix.firewalld:
         port: 2049/udp
-        state: enabled
-        permanent: true
-        immediate: true
-
-    - name: Permitir 111/tcp en firewalld (rpcbind)
-      ansible.posix.firewalld:
-        port: 111/tcp
-        state: enabled
-        permanent: true
-        immediate: true
-
-    - name: Permitir 111/udp en firewalld (rpcbind)
-      ansible.posix.firewalld:
-        port: 111/udp
         state: enabled
         permanent: true
         immediate: true
