@@ -1,0 +1,75 @@
+# nfs_setup.yml
+- name: Configurar servidor NFS en CentOS
+  hosts: centos
+  become: true
+
+  vars:
+    nfs_export_path: /var/nfs_shared
+    # Abierto a todos para lab. Podés restringir por IP/subred.
+    nfs_export_line: "/var/nfs_shared *(rw,sync)"
+
+  tasks:
+    - name: Paquetes necesarios (NFS + firewalld)
+      ansible.builtin.package:
+        name:
+          - nfs-utils
+          - firewalld
+        state: present
+
+    - name: firewalld iniciado y habilitado
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+
+    - name: nfs-server iniciado y habilitado
+      ansible.builtin.service:
+        name: nfs-server
+        state: started
+        enabled: true
+
+    # Abrir por PUERTO (no por servicio)
+    - name: Permitir 2049/tcp en firewalld (NFS)
+      ansible.posix.firewalld:
+        port: 2049/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: Permitir 2049/udp en firewalld (NFS)
+      ansible.posix.firewalld:
+        port: 2049/udp
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: Crear directorio exportado con permisos requeridos
+      ansible.builtin.file:
+        path: "{{ nfs_export_path }}"
+        state: directory
+        owner: nobody
+        group: nobody
+        mode: "0777"
+
+    # Opcional: si SELinux está enabled, permitir export RW
+    - name: Permitir export RW con SELinux (si aplica)
+      ansible.posix.seboolean:
+        name: nfs_export_all_rw
+        state: true
+        persistent: true
+      when: ansible_selinux is defined and ansible_selinux.status == "enabled"
+
+    - name: Declarar export en /etc/exports
+      ansible.builtin.lineinfile:
+        path: /etc/exports
+        line: "{{ nfs_export_line }}"
+        create: true
+        mode: "0644"
+        state: present
+        backup: true
+      notify: Releer exports
+
+  handlers:
+    - name: Releer exports
+      ansible.builtin.command: exportfs -r
+      changed_when: false
