@@ -44,11 +44,17 @@ ansible centos -i inventory.ini -b -K -m package -a 'name=chrony state=present u
 
 ### Iniciar y habilitar el servicio chronyd
 ```bash
-ansible centos -i inventory.ini -b -m service -a 'name=chronyd state=started enabled=yes'
+ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started enabled=yes'
 ```
 
 - `-m service` indica el módulo `service`, que administra servicios en el sistema.
 - `enabled=yes`: el servicio debe iniciar al bootear.
 - `state=started`: el estado debe ser iniciado.
 - Idempotente: si ya está activo el servicio y habilitado, no hace nada.
+
+Estos comandos se pueden ejecutar en una sola linea si agregamos "&&\" de la siguente manera:
+
+`ansible centos -i inventory.ini -b -m package -a 'name=chrony state=present' && \
+ansible centos -i inventory.ini -b -m service -a 'name=chronyd state=started enabled=yes'`
+
 ---
