@@ -2,6 +2,8 @@
 - name: Configurar servidor NFS en CentOS
   hosts: centos
   become: true
+  collections:
+    - ansible.posix
 
   vars:
     nfs_export_path: /var/nfs_shared
@@ -30,14 +32,14 @@
 
     # Abrir por PUERTO (no por servicio)
     - name: Permitir 2049/tcp en firewalld (NFS)
-      firewalld:
+      ansible.posix.firewalld:
         port: 2049/tcp
         state: enabled
         permanent: true
         immediate: true
 
     - name: Permitir 2049/udp en firewalld (NFS)
-      firewalld:
+      ansible.posix.firewalld:
         port: 2049/udp
         state: enabled
         permanent: true
@@ -50,14 +52,6 @@
         owner: nobody
         group: nobody
         mode: "0777"
-
-    # Opcional: si SELinux está enabled, permitir export RW
-    - name: Permitir export RW con SELinux (si aplica)
-      ansible.posix.seboolean:
-        name: nfs_export_all_rw
-        state: true
-        persistent: true
-      when: ansible_selinux is defined and ansible_selinux.status == "enabled"
 
     - name: Declarar export en /etc/exports
       ansible.builtin.lineinfile:
