@@ -149,10 +149,10 @@ ansible-playbook -i inventory.ini hardening.yml -K
 
 - Salida del playbook nfs_setup.yml
 
-![Texto alternativo](imagenes/nfssetup.png)
+![Texto alternativo](Documentos/imagenes/setupnfs.png)
 
 - Salida del playbook hardening.yml
 
-![Texto alternativo](imagenes/hardening.png)
+![Texto alternativo](Documentos/imagenes/hardening.png)
 
 ---
