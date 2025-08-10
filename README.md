@@ -142,3 +142,14 @@ ansible-playbook -i inventory.ini hardening.yml -K
   Esto muestra qué cambios se realizarían, sin modificar nada.
 
 ---
+
+### verificacion de playbooks
+
+- **Salida esperada al ejecutar:**
+
+- Salida del playbook nfs_setup.yml
+
+  ![Texto alternativo](imagenes/EjecucionDeNfs_setup.yml.png)
+
+
+---
