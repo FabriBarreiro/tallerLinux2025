@@ -10,7 +10,7 @@ bastion - 192.168.10.30
 
 Utilizamos ansible desde el bastion para ejecutar comandos y playbooks, usandolo como nodo de control.
 
-Caracteristicas:
+Caracteristicas de Hardware virtual:
 
 centos9:
 
@@ -40,11 +40,7 @@ Se deben crear dos interfaces de red:
 - **enp0s3:** red nateada para salida a internet.
 - **enp0s8:** Conectada a la red interna de servidores
 
-## 3. Instalación del Sistema Operativo
-
-Seguir el asistente de instalación seleccionando los paquetes mínimos necesarios.
-
-## 4. Configuración de la clave pública SSH desde el servidor bastión
+## 3. Configuración de la clave pública SSH desde el servidor bastión
 
 Desde el servidor bastión, copiar la clave pública a los servidores para permitir el acceso por SSH:
 
@@ -59,6 +55,6 @@ El copiado puede dar error al no tener instalado ssh en ubuntu.
 Instalacion de SSH en ubuntu:
 ![Texto alternativo](imagenes/InstalacionDeSshEnUbuntu.png)
 
-## 5. Instalacion de Ansible
+## 4. Instalacion de Ansible en bastion y colecciones necesarias
 
 ---
