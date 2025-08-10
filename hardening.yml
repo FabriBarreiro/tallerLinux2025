@@ -65,7 +65,6 @@
         regexp: '^[#\s]*PasswordAuthentication\s+'
         line: "PasswordAuthentication no"
         create: no
-        backrefs: false
       notify: Reiniciar SSH si cambió configuración
 
     # Bloquea el login SSH directo del usuario root
@@ -75,7 +74,6 @@
         regexp: '^[#\s]*PermitRootLogin\s+'
         line: "PermitRootLogin no"
         create: no
-        backrefs: false
       notify: Reiniciar SSH si cambió configuración
 
     # 4) fail2ban instalado, habilitado y activo
