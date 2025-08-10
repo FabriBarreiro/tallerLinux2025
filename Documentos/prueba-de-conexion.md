@@ -17,5 +17,5 @@ Para verificar la conectividad con todos los hosts del inventario, se puede usar
 ```bash
 ansible all -i inventory.ini -m ping
 ```
-![Texto alternativo](EjecucionDeInventarioPing.png)
+![Texto alternativo](imagenes/EjecucionDeInventarioPing.png)
 
