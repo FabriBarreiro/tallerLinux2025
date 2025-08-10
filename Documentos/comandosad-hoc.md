@@ -17,6 +17,9 @@ ansible ubuntu -i inventory.ini -m shell -a 'getent passwd | cut -d: -f1 | sort'
 
 ---
 
+![Texto alternativo](imagenes/comando listar usuarios.png)
+
+
 ## 2. Mostrar el uso de memoria en todos los servidores
 
 ```bash
