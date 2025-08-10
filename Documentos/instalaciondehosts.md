@@ -68,4 +68,8 @@ Instalamos las colecciones necesarias para nuestros playbooks:
 
 ![Texto alternativo](imagenes/InstalacionDeCollectionPosix.png)
 
+## 5. (opcional) Control de versiones con GIT
+
+Si queremos mantener un control de versiones sobre nuestros playbooks debemos contar con GIT.
+
 ---
