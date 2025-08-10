@@ -1,4 +1,5 @@
 # Obligatorio Taller Linux Julio 2025
+
 Hecho por: Fabricio Barreiro y Santiago Hoaguy
 
 ## Uso de los playbooks de Ansible
@@ -6,6 +7,10 @@ Hecho por: Fabricio Barreiro y Santiago Hoaguy
 Este proyecto utiliza **Ansible** para automatizar la configuración de servidores y servicios, adaptado específicamente a nuestro entorno para el Obligatorio de Taller Linux 2025.
 
 ### Requisitos previos
+
+Seguir los pasos documentados en el archivo instalaciondehosts.md
+
+Luego podra continuar aqui.
 
 #### Estructura del repositorio
 
@@ -15,7 +20,14 @@ tallerLinux2025/
 ├── nfs_setup.yml              # Playbook para configurar el servidor NFS en CentOS
 ├── hardening.yml              # Playbook para aplicar hardening en sistemas Ubuntu
 └── README.md                  # Documentación del proyecto y uso de los playbooks
+Documentos/
+├── imagenes/               # Carpeta que contiene capturas de pantalla usadas en la documentación.
+├── ansible_basics.md       # Explicación sobre ansible, que es y como funciona.
+├── comandosad-hoc.md       # Lista de comandos ad-hoc usados en el proyecto.
+├── instalaciondehosts.md   # Procedimiento de instalación del setup general, hosts y bastion.
+└── prueba-de-conexion.md   # Comprobación de conexión con los hosts.
 ```
+
 
 #### 1. Servidor donde corre Ansible
 
@@ -113,7 +125,7 @@ Especificamente cumple los siguientes puntos:
 quedar habilitado y activado.
 - Debe haber un handler que reinicie el sistema si se actualizan paquetes.
 - Debe haber un handler que reinicie ssh si cambia la configuración.
-  
+
 - **Comando de ejecución:**
 ```bash
 ansible-playbook -i inventory.ini hardening.yml -K
