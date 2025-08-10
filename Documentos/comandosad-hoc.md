@@ -38,7 +38,7 @@ ansible linux -i inventory.ini -m command -a 'free -h'
 
 ### Instalar chrony
 ```bash
-ansible centos -i inventory.ini -b -K -m package -a 'name=chrony state=present use=dnf'
+ansible centos -i inventory.ini -b -K -m package -a 'name=chrony state=present'
 ```
 
 - `-m package` indica el módulo `package`, que maneja paquetes usando el gestor disponible.
@@ -57,14 +57,14 @@ ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started 
 - `state=started`: el estado debe ser iniciado.
 - Idempotente: si ya está activo el servicio y habilitado, no hace nada.
 
-![Texto alternativo](imagenes/ComandoVerificacionDeChrony.png)
+![Texto alternativo](imagenes/chronyUpdate.png)
 
 
 Estos comandos se pueden ejecutar en una sola linea si agregamos anidamos los comandos de la siguente manera:
 
 ```bash
-ansible centos -i inventory.ini -b -m package -a 'name=chrony state=present' && \
-ansible centos -i inventory.ini -b -m service -a 'name=chronyd state=started enabled=yes'
+ansible centos -i inventory.ini -b -K -m package -a 'name=chrony state=present' && \
+ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started enabled=yes'
 ```
 
 ---
