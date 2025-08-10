@@ -60,4 +60,12 @@ Instalacion de SSH en ubuntu:
 
 ## 4. Instalacion de Ansible en bastion y colecciones necesarias
 
+Instalamos Ansible en nuestro equipo bastion:
+
+![Texto alternativo](imagenes/InstalacionDeAnsible.png)
+
+Instalamos las colecciones necesarias para nuestros playbooks:
+
+![Texto alternativo](imagenes/InstalacionDeCollectionPosix.png)
+
 ---
