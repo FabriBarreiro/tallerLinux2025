@@ -32,6 +32,8 @@ ansible linux -i inventory.ini -m command -a 'free -h'
 
 ---
 
+![Texto alternativo](imagenes/ComandoMemoriaServers.png)
+
 ## 3. Que el servicio chrony esté instalado y funcionando en servidor CentOS
 
 ### Instalar chrony
@@ -54,6 +56,9 @@ ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started 
 - `enabled=yes`: el servicio debe iniciar al bootear.
 - `state=started`: el estado debe ser iniciado.
 - Idempotente: si ya está activo el servicio y habilitado, no hace nada.
+
+![Texto alternativo](imagenes/ComandoVerificacionDeChrony.png)
+
 
 Estos comandos se pueden ejecutar en una sola linea si agregamos anidamos los comandos de la siguente manera:
 
