@@ -1,4 +1,3 @@
----
 # Procedimiento de Instalación y Configuración de los Servidores
 
 ## 1. Instalacion de los servidores
@@ -63,4 +62,3 @@ Instalacion de SSH en ubuntu:
 ## 5. Instalacion de Ansible
 
 ---
-
