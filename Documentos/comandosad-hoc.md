@@ -32,7 +32,7 @@ ansible linux -i inventory.ini -m command -a 'free -h'
 
 ---
 
-![Texto alternativo](imagenes/ComandoMemoriaServers.png)
+![Texto alternativo](imagenes/ComandosMemoriaServers.png)
 
 ## 3. Que el servicio chrony esté instalado y funcionando en servidor CentOS
 
