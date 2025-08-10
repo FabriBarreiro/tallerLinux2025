@@ -29,11 +29,11 @@ Instalamos ansible con el siguiente comando en el caso de Centos
 ```bash
 sudo dnf install ansible-core
 ```
-- Generamos un juego de llaves con el comando:
+Generamos un juego de llaves con el comando:
 ```bash
 ssh-keygen
 ```
--Una vez que generé las claves debo copiarlas a los equipos que voy a controlar, usando el comando
+Una vez que generé las claves debo copiarlas a los equipos que voy a controlar, usando el comando
 ```bash
 ssh-copy-id
 ```
