@@ -7,6 +7,8 @@ Para listar los hosts disponibles en el inventario de Ansible, se utiliza el sig
 ```bash
 ansible-inventory -i inventory.ini --list
 ```
+![Texto alternativo](imagenes/EjecucionDelInventario1.png)
+![Texto alternativo](imagenes/EjecucionDeInventario2.png)
 
 ## Hacer ping a todos los hosts
 
@@ -15,4 +17,5 @@ Para verificar la conectividad con todos los hosts del inventario, se puede usar
 ```bash
 ansible all -i inventory.ini -m ping
 ```
+![Texto alternativo](EjecucionDeInventarioPing.png)
 
