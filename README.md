@@ -155,4 +155,8 @@ ansible-playbook -i inventory.ini hardening.yml -K
 
 ![Texto alternativo](Documentos/imagenes/hardening.png)
 
+- **cambios en servidores:**
+
+Falta agregar capturas de validacion.
+
 ---
