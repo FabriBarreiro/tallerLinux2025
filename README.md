@@ -159,14 +159,18 @@ ansible-playbook -i inventory.ini hardening.yml -K
 
 Luego de ejecutar el playbook nfs_setup.yml, el resultado deberia ser el siguiente:
 
-![Texto alternativo](Documentos/imagenes/VerificacionesDePlaybookNfs.png)
+  ![Texto alternativo](Documentos/imagenes/VerificacionesDePlaybookNfs.png)
 
 En esta verificación se observa:
 
 1. **Directorio /var/nfs_shared creado** con los permisos correctos (777) y propiedad de `nobody:nobody`, lo que permite que cualquier cliente autorizado por NFS pueda escribir y leer.
+
 2. **firewalld activo** y habilitado para permitir las conexiones necesarias.
+
 3. **Servicio nfs-server activo**, garantizando que el recurso NFS esté disponible.
+
 4. **Archivo /etc/exports configurado** con la ruta `/var/nfs_shared *(rw,sync)`, lo que indica que el recurso está compartido para todos los clientes (`*`), con permisos de lectura/escritura y sincronización en disco.
+
 5. **Puertos 2049/tcp y 2049/udp abiertos**, que son los utilizados por el protocolo NFS para el intercambio de datos.
 
 Esto confirma que el playbook `nfs_setup.yml` ejecutó correctamente todas las tareas previstas.
