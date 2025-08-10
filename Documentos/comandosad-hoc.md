@@ -57,9 +57,6 @@ ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started 
 - `state=started`: el estado debe ser iniciado.
 - Idempotente: si ya está activo el servicio y habilitado, no hace nada.
 
-![Texto alternativo](imagenes/chronyUpdate.png)
-
-
 Estos comandos se pueden ejecutar en una sola linea si agregamos anidamos los comandos de la siguente manera:
 
 ```bash
@@ -68,3 +65,4 @@ ansible centos -i inventory.ini -b -K -m service -a 'name=chronyd state=started 
 ```
 
 ---
+![Texto alternativo](imagenes/chronyUpdate.png)
