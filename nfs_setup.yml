@@ -1,70 +1,76 @@
 # nfs_setup.yml
-# Playbook que configura un servidor NFS en CentOS de forma idempotente
-- name: Configurar servidor NFS en CentOS # Nombre del play (aparece en la salida)
-  hosts: centos # Grupo/host objetivo definido en inventory.ini
-  become: true # Ejecutar tareas con privilegios (sudo)
+# Playbook para configurar servidor NFS en CentOS
+- name: Configurar servidor NFS en CentOS
+  hosts: centos # Grupo objetivo
+  become: true
   collections:
-    - ansible.posix # Usamos módulos de la colección ansible.posix (firewalld, seboolean, etc.)
+    - ansible.posix
 
   vars:
-    nfs_export_path: /var/nfs_shared # Ruta del directorio que se exportará por NFS
-    # Abierto a todos para lab. Podés restringir por IP/subred (ej.: 192.168.10.0/24)
-    nfs_export_line: "/var/nfs_shared *(rw,sync)" # Línea a colocar en /etc/exports con opciones NFS
+    nfs_export_path: /var/nfs_shared
+    nfs_export_line: "/var/nfs_shared *(rw,sync)"
 
-  tasks: # Lista de tareas a ejecutar en orden
-    - name: Paquetes necesarios (NFS + firewalld) # Asegura dependencias instaladas
+  tasks:
+    # Instala dependencias de NFS y el firewall
+    - name: Instalar paquetes necesarios
       ansible.builtin.package:
         name:
-          - nfs-utils # Utilidades y unidades systemd para NFS (nfs-server, exportfs, etc.)
-          - firewalld # Firewall por defecto en CentOS/RHEL
-        state: present # Instalar si falta; no hacer nada si ya está (idempotente)
+          - nfs-utils
+          - firewalld
+        state: present
 
-    - name: firewalld iniciado y habilitado # Garantiza firewall activo y en arranque
+    # Activa el firewall y lo deja habilitado al arranque
+    - name: Iniciar y habilitar firewalld
       ansible.builtin.service:
-        name: firewalld # Nombre del servicio
-        state: started # Debe estar corriendo ahora
-        enabled: true # Debe iniciar al boot
+        name: firewalld
+        state: started
+        enabled: true
 
-    - name: nfs-server iniciado y habilitado # Garantiza NFS activo y en arranque
+    # Arranca y habilita el servicio del servidor NFS
+    - name: Iniciar y habilitar nfs-server
       ansible.builtin.service:
-        name: nfs-server # Servicio del servidor NFS
-        state: started # Debe estar corriendo ahora
-        enabled: true # Debe iniciar al boot
+        name: nfs-server
+        state: started
+        enabled: true
 
-    # Abrir por PUERTO (no por servicio)             # Reglas de firewall específicas
-    - name: Permitir 2049/tcp en firewalld (NFS) # Puerto NFS (TCP)
+    # Abre el puerto 2049/TCP (NFS)
+    - name: Permitir puerto 2049/tcp en firewalld
       ansible.posix.firewalld:
-        port: 2049/tcp # Puerto/protocolo a habilitar
-        state: enabled # Habilitar la regla
-        permanent: true # Persistir en la config de firewalld
-        immediate: true # Aplicar inmediatamente sin reload manual
+        port: 2049/tcp
+        state: enabled
+        permanent: true
+        immediate: true
 
-    - name: Permitir 2049/udp en firewalld (NFS) # Puerto NFS (UDP)
+    # Abre el puerto 2049/UDP (NFS)
+    - name: Permitir puerto 2049/udp en firewalld
       ansible.posix.firewalld:
-        port: 2049/udp # Puerto/protocolo a habilitar
-        state: enabled # Habilitar la regla
-        permanent: true # Persistir en la config de firewalld
-        immediate: true # Aplicar inmediatamente sin reload manual
+        port: 2049/udp
+        state: enabled
+        permanent: true
+        immediate: true
 
-    - name: Crear directorio exportado con permisos requeridos
+    # Crea el directorio a exportar con dueño nobody:nobody y permisos 0777
+    - name: Crear directorio exportado con permisos 0777
       ansible.builtin.file:
-        path: "{{ nfs_export_path }}" # Ruta del directorio a asegurar
-        state: directory # Debe existir como carpeta
-        owner: nobody # Propietario (usuario)
-        group: nobody # Grupo
-        mode: "0777" # Permisos (rwx para todos) — requerido por la consigna
+        path: "{{ nfs_export_path }}"
+        state: directory
+        owner: nobody
+        group: nobody
+        mode: "0777"
 
-    - name: Declarar export en /etc/exports # Asegura línea de export en el archivo de configuración NFS
+    # Declara el export en /etc/exports y notifica recarga si cambia
+    - name: Asegurar línea en /etc/exports
       ansible.builtin.lineinfile:
-        path: /etc/exports # Archivo de exports del servidor NFS
-        line: "{{ nfs_export_line }}" # Línea exacta a colocar
-        create: true # Crear el archivo si no existe
-        mode: "0644" # Permisos del archivo exports
-        state: present # Asegurar que la línea esté presente
-        backup: true # Guardar copia antes de modificar
-      notify: Releer exports # Si cambia, notifica al handler para recargar configuración
+        path: /etc/exports
+        line: "{{ nfs_export_line }}"
+        create: true
+        mode: "0644"
+        state: present
+        backup: true
+      notify: Releer exports
 
-  handlers: # Handlers: se ejecutan sólo si son notificados
-    - name: Releer exports # Handler que recarga exports
-      ansible.builtin.command: exportfs -r # Relee /etc/exports (aplica cambios sin reiniciar NFS)
-      changed_when: false # No marcar como "changed" (evita ensuciar la salida)
+  handlers:
+    # Handler: recarga las exportaciones si la tarea anterior modificó /etc/exports
+    - name: Releer exports
+      ansible.builtin.command: exportfs -r
+      changed_when: false
