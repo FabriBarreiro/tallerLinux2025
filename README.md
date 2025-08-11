@@ -176,3 +176,15 @@ En esta verificación se observa:
 Esto confirma que el playbook `nfs_setup.yml` ejecutó correctamente todas las tareas previstas.
 
 ---
+
+Luego de ejecutar el playbook hardening.yml, el resultado deberia ser el siguiente:
+
+ ![Texto alternativo](Documentos/imagenes/VerificacionArchivoSshPasswordNo.png)
+
+ ![Texto alternativo](Documentos/imagenes/VerificacionSshRootLoginNo.png)
+
+ ![Texto alternativo](Documentos/imagenes/VerificacionDeFail2banInstaladoYJailParaSsh.png)
+
+ ![Texto alternativo](Documentos/imagenes/VerificacionQueNoSePuedeLogearRoot.png)
+  
+ ![Texto alternativo](Documentos/imagenes/VerificacionesSegundoPlaybook.png)
