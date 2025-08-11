@@ -188,6 +188,7 @@ En el archivo de configuracion de SSHD podemos observar que se agregaron las lin
  ![Texto alternativo](Documentos/imagenes/VerificacionArchivoSshRootLoginNo.png)
 
  Luego de esto podemos observar que si intentamos conectarnos al server por SSH con el usuario Root no podremos acceder al mismo
+ 
  ![Texto alternativo](Documentos/imagenes/VerificacionQueNoSePuedeLogearRoot.png)
 
  Podemos ver que **Fail2Ban** esta instalado y funcionando ademas que se creo una Jail para el servicio de SSH
