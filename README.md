@@ -143,9 +143,9 @@ ansible-playbook -i inventory.ini hardening.yml -K
 
 ---
 
-### verificacion de playbooks
+### Verificación de playbooks
 
-- **Salida esperada al ejecutar:**
+ **Salida esperada al ejecutar:**
 
 - Salida del playbook nfs_setup.yml
 
@@ -177,7 +177,7 @@ Esto confirma que el playbook `nfs_setup.yml` ejecutó correctamente todas las t
 
 ---
 
-Luego de ejecutar el playbook hardening.yml, el resultado deberia ser el siguiente:
+Luego de ejecutar el playbook **hardening.yml**, el resultado deberia ser el siguiente:
 
 En esta verificación podemos observar lo siguiente:
 
@@ -194,4 +194,5 @@ En el archivo de configuracion de SSHD podemos observar que se agregaron las lin
  ![Texto alternativo](Documentos/imagenes/VerificacionDeFail2banInstaladoYJailParaSsh.png)
 
  Podemos observar que el sistema esta actualizado y que el firewall se encuentra bloqueando todas las conexiones entrantes excepto las del puerto 22 (SSH)
+ 
  ![Texto alternativo](Documentos/imagenes/VerificacionesSegundoPlaybook.png)
