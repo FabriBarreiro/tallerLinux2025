@@ -63,7 +63,7 @@ Copiado de llaves:
 
 Para copiar la clave pública generada al servidor de destino, se utilizó el comando:
 ```bash
-ssh-copy-id usuario@ip_del_servidor
+ssh-copy-id ip_del_servidor
 ```
 Esto permite que el servidor bastión pueda autenticarse por SSH sin necesidad de ingresar la contraseña cada vez.
 
