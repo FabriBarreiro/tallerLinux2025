@@ -179,12 +179,19 @@ Esto confirma que el playbook `nfs_setup.yml` ejecutó correctamente todas las t
 
 Luego de ejecutar el playbook hardening.yml, el resultado deberia ser el siguiente:
 
+En esta verificación podemos observar lo siguiente:
+
+En el archivo de configuracion de SSHD podemos observar que se agregaron las lineas de **"PasswordAuthentication no"** y **"RootLogin no"**
+
  ![Texto alternativo](Documentos/imagenes/VerificacionArchivoSshPasswordNo.png)
 
- ![Texto alternativo](Documentos/imagenes/VerificacionSshRootLoginNo.png)
+ ![Texto alternativo](Documentos/imagenes/VerificacionArchivoSshRootLoginNo.png)
 
+ Luego de esto podemos observar que si intentamos conectarnos al server por SSH con el usuario Root no podremos acceder al mismo
+ ![Texto alternativo](Documentos/imagenes/VerificacionQueNoSePuedeLogearRoot.png)
+
+ Podemos ver que **Fail2Ban** esta instalado y funcionando ademas que se creo una Jail para el servicio de SSH
  ![Texto alternativo](Documentos/imagenes/VerificacionDeFail2banInstaladoYJailParaSsh.png)
 
- ![Texto alternativo](Documentos/imagenes/VerificacionQueNoSePuedeLogearRoot.png)
-  
+ Podemos observar que el sistema esta actualizado y que el firewall se encuentra bloqueando todas las conexiones entrantes excepto las del puerto 22 (SSH)
  ![Texto alternativo](Documentos/imagenes/VerificacionesSegundoPlaybook.png)
