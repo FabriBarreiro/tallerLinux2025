@@ -87,11 +87,11 @@ Instalamos Ansible en nuestro equipo bastión:
 
 Para instalar Ansible, se ejecutó el siguiente comando:
 ```bash
-sudo dnf install ansible
+sudo dnf install ansible-core
 ```
 o en sistemas basados en Ubuntu:
 ```bash
-sudo apt install ansible
+sudo apt install ansible-core
 ```
 Esto instala la herramienta principal que utilizaremos para automatizar la configuración de los servidores.
 
