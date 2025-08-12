@@ -44,6 +44,13 @@
         direction: incoming
         policy: deny
 
+    - name: Asegurar que OpenSSH está instalado
+      apt:
+        name: openssh-server
+        state: present
+        update_cache: yes
+      become: yes
+
     # Permite acceso SSH
     - name: UFW - permitir OpenSSH
       community.general.ufw:
