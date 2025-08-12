@@ -188,12 +188,27 @@ En el archivo de configuracion de SSHD podemos observar que se agregaron las lin
  ![Texto alternativo](Documentos/imagenes/VerificacionArchivoSshRootLoginNo.png)
 
  Luego de esto podemos observar que si intentamos conectarnos al server por SSH con el usuario Root no podremos acceder al mismo
- 
+
  ![Texto alternativo](Documentos/imagenes/VerificacionQueNoSePuedeLogearRoot.png)
 
  Podemos ver que **Fail2Ban** esta instalado y funcionando ademas que se creo una Jail para el servicio de SSH
  ![Texto alternativo](Documentos/imagenes/VerificacionDeFail2banInstaladoYJailParaSsh.png)
 
  Podemos observar que el sistema esta actualizado y que el firewall se encuentra bloqueando todas las conexiones entrantes excepto las del puerto 22 (SSH)
- 
+
  ![Texto alternativo](Documentos/imagenes/VerificacionesSegundoPlaybook.png)
+
+---
+
+## Uso de IAG
+
+Durante la implementación de los playbooks y la documentación, se utilizaron prompts en una herramienta de Inteligencia Artificial Generativa (IAG) con el objetivo de asistir en tareas específicas como la depuración de código, la optimización de configuraciones, la generación de fragmentos de código compatibles con versiones recientes de Ansible, y la explicación detallada de cada parte del playbook para su correcta documentación. Esto permitió acelerar el desarrollo, asegurar buenas prácticas y garantizar que la configuración cumpla con los requisitos técnicos solicitados.
+
+Se realizaron los siguientes prompts en ChatGPT, al modelo GPT5.
+
+	1.	“Explícame paso a paso cómo asegurar que PasswordAuthentication quede en no en Ubuntu aunque 50-cloud-init.conf lo ponga en yes”
+	2.	“Genera un playbook de Ansible para configurar NFS en CentOS con firewall y exportaciones seguras”
+	3.	“Corrige este código de Ansible para que siga buenas prácticas y sea compatible con Ansible 2.14”
+	4.	“Describe qué hace este playbook línea por línea para poder documentarlo en mi informe”
+	5.	“Ayúdame a simplificar este playbook quitando parámetros innecesarios y manteniendo la funcionalidad”
+	6.	“Explica por qué en un playbook se debe usar un handler para aplicar cambios de configuración y no en una tarea directa”
